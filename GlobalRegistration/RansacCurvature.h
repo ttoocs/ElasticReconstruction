@@ -750,7 +750,7 @@ template <typename PointSource, typename PointTarget, typename FeatureT> void
 template <typename PointSource, typename PointTarget, typename Scalar> inline void
 	RansacCurvature<PointSource, PointTarget, Scalar>::align_redux( PointCloudSource &output, const Eigen::Matrix4f& guess )
 {
-	if (!initCompute ()) 
+	if (!initCompute())
 		return;
 
 	// Resize the output dataset
@@ -813,5 +813,5 @@ template <typename PointSource, typename PointTarget, typename Scalar> inline vo
 	if (converged_)
 		transformPointCloud (*input_, output, final_transformation_);
 
-	deinitCompute ();
+  deinitCompute();
 }

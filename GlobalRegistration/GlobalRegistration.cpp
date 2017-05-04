@@ -1,7 +1,7 @@
 // GlobalRegistration.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <Eigen/Core>
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>

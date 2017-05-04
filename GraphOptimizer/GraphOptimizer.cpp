@@ -1,7 +1,7 @@
 // GraphOptimizer.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "OptApp.h"
 #include <boost/format.hpp>
 #include <boost/program_options.hpp>
