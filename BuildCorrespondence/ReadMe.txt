@@ -3,7 +3,6 @@ linked against boost_system and boost_system-mt
 linked against glut.3
 
 
-
 ========================================================================
     CONSOLE APPLICATION : BuildCorrespondence Project Overview
 ========================================================================

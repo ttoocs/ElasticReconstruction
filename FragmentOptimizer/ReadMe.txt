@@ -1,3 +1,9 @@
+linked against all of PCL
+linked against boost_system boost_system-mt, and boost_filesystem
+linked against amd, camd, ccolamd, cholmod, coland, and suitesparseconfig
+Note that for Eigen the version located in external is required
+
+
 ========================================================================
     CONSOLE APPLICATION : FragmentOptimizer Project Overview
 ========================================================================

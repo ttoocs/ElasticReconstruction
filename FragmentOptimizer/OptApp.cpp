@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+//#include "StdAfx.h"
 #include "OptApp.h"
 #include <pcl/console/print.h>
 #include <pcl/point_cloud.h>

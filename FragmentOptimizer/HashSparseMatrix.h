@@ -6,14 +6,14 @@
 #include "external/Eigen/IterativeLinearSolvers"
 #include "external/Eigen/CholmodSupport"
 #include "external/unsupported/Eigen/SparseExtra"
-#include <hash_map>
+#include <unordered_map>
 #include <vector>
 
 typedef Eigen::Triplet< double > Triplet;
 typedef std::vector< Triplet > TripletVector;
-typedef stdext::hash_map< int, int > HashMap;
-typedef stdext::hash_map< int, int >::const_iterator HashMapIterator;
-typedef pair< int, int > IntPair;
+typedef std::unordered_map< int, int > HashMap;
+typedef std::unordered_map< int, int >::const_iterator HashMapIterator;
+typedef std::pair< int, int > IntPair;
 
 class HashSparseMatrix
 {
