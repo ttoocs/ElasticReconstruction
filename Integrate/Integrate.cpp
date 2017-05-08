@@ -1,7 +1,7 @@
 // Integrate.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 
 #include <pcl/console/parse.h>
 #include <pcl/common/time.h>

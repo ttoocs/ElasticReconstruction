@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+//#include "StdAfx.h"
 #include "TSDFVolumeUnit.h"
 
 TSDFVolumeUnit::TSDFVolumeUnit( int resolution, int xi, int yi, int zi )
