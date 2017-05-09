@@ -581,7 +581,7 @@ template <typename PointSource, typename PointTarget, typename FeatureT> void
 
 			transformation_estimation_->estimateRigidTransformation ( temp_input, idxs, temp_target, idxs, transformation_);
 
-			if ( _isnanf( transformation_( 0, 0 ) ) ) {
+			if (isnan( transformation_( 0, 0 ) ) ) {
 				++num_normal_rejections;
 				continue;
 			}
@@ -750,18 +750,18 @@ template <typename PointSource, typename PointTarget, typename FeatureT> void
 template <typename PointSource, typename PointTarget, typename Scalar> inline void
 	RansacCurvature<PointSource, PointTarget, Scalar>::align_redux( PointCloudSource &output, const Eigen::Matrix4f& guess )
 {
-	if (!initCompute())
+	if (!this->initCompute())
 		return;
 
 	// Resize the output dataset
-	if (output.points.size () != indices_->size ())
-		output.points.resize (indices_->size ());
+	if (output.points.size() != this->indices_->size())
+		output.points.resize(this->indices_->size());
 	// Copy the header
 	output.header   = input_->header;
 	// Check if the output will be computed for all points or only a subset
-	if (indices_->size () != input_->points.size ())
+	if (this->indices_->size() != this->input_->points.size())
 	{
-		output.width    = static_cast<uint32_t> (indices_->size ());
+		output.width    = static_cast<uint32_t>(this->indices_->size());
 		output.height   = 1;
 	}
 	else
@@ -772,16 +772,16 @@ template <typename PointSource, typename PointTarget, typename Scalar> inline vo
 	output.is_dense = input_->is_dense;
 
 	// Copy the point data to output
-	for (size_t i = 0; i < indices_->size (); ++i)
-		output.points[i] = input_->points[(*indices_)[i]];
+	for (size_t i = 0; i < this->indices_->size (); ++i)
+		output.points[i] = input_->points[(*this->indices_)[i]];
 
 	// Perform the actual transformation computation
 	converged_ = false;
-	final_transformation_ = transformation_ = previous_transformation_ = Eigen::Matrix4f::Identity ();
+	final_transformation_ = transformation_ = this->previous_transformation_ = Eigen::Matrix4f::Identity ();
 
 	// Right before we estimate the transformation, we set all the point.data[3] values to 1 to aid the rigid 
 	// transformation
-	for (size_t i = 0; i < indices_->size (); ++i)
+	for (size_t i = 0; i < this->indices_->size (); ++i)
 		output.points[i].data[3] = 1.0;
 
 	// Initialize results
@@ -813,5 +813,5 @@ template <typename PointSource, typename PointTarget, typename Scalar> inline vo
 	if (converged_)
 		transformPointCloud (*input_, output, final_transformation_);
 
-  deinitCompute();
+  this->deinitCompute();
 }

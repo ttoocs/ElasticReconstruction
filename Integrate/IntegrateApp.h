@@ -1,7 +1,7 @@
 #pragma once
 #include <boost/filesystem.hpp>
 #include <pcl/io/grabber.h>
-#include <pcl/io/openni_grabber.h>
+#include <pcl/io/openni2_grabber.h>
 #include <pcl/io/oni_grabber.h>
 #include <pcl/io/pcd_grabber.h>
 #include <pcl/common/time.h>
