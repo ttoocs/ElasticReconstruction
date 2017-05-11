@@ -5,9 +5,9 @@ cmake_minimum_required(VERSION 2.8)
 
 #FIND THE THINGS
 find_package( Boost REQUIRED COMPONENTS system filesystem )
-find_package( glut REQUIRED )
+find_package( GLUT REQUIRED )
 find_package( OpenGL REQUIRED )
-find_package( PCL REQUIRED COMPONENTS common io KDTree registration point_types)
+find_package( PCL REQUIRED COMPONENTS common io KDTree registration point_types visualization)
 #find_package( PCL REQUIRED )
 
 
