@@ -4,3 +4,11 @@
 /x64/
 *.asv
 GlobalRegistration/x64/
+
+#Taken from 3d-reconstruction
+build/*
+*.pbxuser
+*.mode1v3
+
+*.DS_store
+profile
