@@ -1,11 +1,21 @@
 #pragma once
 
-#include "external/Eigen/Core"
-#include "external/Eigen/SparseCore"
-#include "external/Eigen/Dense"
-#include "external/Eigen/IterativeLinearSolvers"
-#include "external/Eigen/CholmodSupport"
-#include "external/unsupported/Eigen/SparseExtra"
+#ifdef NEWEIGEN
+    #include <Eigen/Core>
+    #include <Eigen/SparseCore>
+    #include <Eigen/Dense>
+    #include <Eigen/IterativeLinearSolvers>
+    #include <Eigen/CholmodSupport>
+    #include <unsupported/Eigen/SparseExtra>
+#else
+    #include "external/Eigen/Core"
+    #include "external/Eigen/SparseCore"
+    #include "external/Eigen/Dense"
+    #include "external/Eigen/IterativeLinearSolvers"
+    #include "external/Eigen/CholmodSupport"
+    #include "external/unsupported/Eigen/SparseExtra"
+#endif
+
 #include <unordered_map>
 #include <vector>
 

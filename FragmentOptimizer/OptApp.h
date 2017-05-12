@@ -2,9 +2,17 @@
 
 #include <vector>
 #include <unordered_set>
-#include "external/Eigen/Core"
-#include "external/Eigen/Geometry"
-#include "external/Eigen/SparseCore"
+
+#ifdef NEWEIGEN
+    #include <Eigen/Core>
+    #include <Eigen/Geometry>
+    #include <Eigen/SparseCore>
+#else
+    #include "external/Eigen/Core"
+    #include "external/Eigen/Geometry"
+    #include "external/Eigen/SparseCore"
+#endif
+
 #include "HashSparseMatrix.h"
 #include "PointCloud.h"
 #include "RGBDTrajectory.h"
