@@ -18,7 +18,25 @@ if(Build_BuildCorrespondence)
 	add_subdirectory(BuildCorrespondence)
 endif()
 
-#TODO: The building of all the other things.
+#Building FragmentOptimizer
+if(Build_FragmentOptimizer)
+	add_subdirectory(FragmentOptimizer)
+endif()
+
+#Building Integrate
+if(Build_Integrate)
+	add_subdirectory(Integrate)
+endif()
+
+#Building GraphOptimizer
+if(Build_)
+	add_subdirectory(GraphOptimizer)
+endif()
+
+#Building
+if(Build_GlobalRegistration)
+	add_subdirectory(GlobalRegistration)
+endif()
 
 #OLD STUFF (Copyed from 3d-reconstruction)
 if(FALSE)
