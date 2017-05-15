@@ -6,7 +6,8 @@
 GlobalRegistration/x64/
 
 #Taken from 3d-reconstruction
-build/*
+*build*
+*bin*
 *.pbxuser
 *.mode1v3
 
