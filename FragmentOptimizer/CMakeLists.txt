@@ -41,6 +41,7 @@ link_libraries(
     ${OPENGL_gl_LIBRARY}
     ${GLUT_LIBRARY}
     ${PCL_LIBRARIES}
+    ${SuiteSparse_CHOLMOD_LIBRARY_RELEASE}
     )
 
 #Handles linking (Via directories)
