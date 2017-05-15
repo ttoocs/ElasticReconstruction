@@ -9,7 +9,7 @@ include (FindPkgConfig)
 find_package( Boost REQUIRED COMPONENTS system filesystem )
 #find_package( GLUT REQUIRED )
 #find_package( OpenGL REQUIRED )
-find_package( EIGEN3 3.3.3 REQUIRED )
+find_package( Eigen3 3.3.3 REQUIRED )
 #find_package( PCL REQUIRED COMPONENETS common )
 #find_package( PCL REQUIRED COMPONENTS common io KDTree registration point_types visualization)
 find_package( PCL REQUIRED )
@@ -17,7 +17,7 @@ find_package( SuiteSparse REQUIRED )
 
 #SetupSuiteSparse()
 
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_HOME_DIRECTORY}/bin )
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_HOME_DIRECTORY}/bin )
 
 #Attempt to use the provided Eigen version
 #set(EXTERNAL_EIGEN ${CMAKE_CURRENT_SOURCE_DIR}/external)
