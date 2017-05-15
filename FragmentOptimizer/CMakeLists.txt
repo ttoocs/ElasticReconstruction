@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 
-#include (FindPkgConfig)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/" ${CMAKE_MODULE_PATH})
+
+include (FindPkgConfig)
 
 
 #FIND THE THINGS
@@ -8,15 +10,19 @@ find_package( Boost REQUIRED COMPONENTS system filesystem )
 #find_package( GLUT REQUIRED )
 #find_package( OpenGL REQUIRED )
 find_package( EIGEN3 3.3.3 REQUIRED )
-find_package( PCL REQUIRED COMPONENETS common )
+#find_package( PCL REQUIRED COMPONENETS common )
 #find_package( PCL REQUIRED COMPONENTS common io KDTree registration point_types visualization)
-#find_package( PCL REQUIRED )
+find_package( PCL REQUIRED )
+find_package( SuiteSparse REQUIRED )
 
+#SetupSuiteSparse()
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_HOME_DIRECTORY}/bin )
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${CMAKE_HOME_DIRECTORY}/bin )
 
 #Attempt to use the provided Eigen version
 #set(EXTERNAL_EIGEN ${CMAKE_CURRENT_SOURCE_DIR}/external)
+
+
 
 add_definitions(
     -std=c++11
