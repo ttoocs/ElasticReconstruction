@@ -10,8 +10,8 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/" ${CMAKE_MODUL
 option(Build_BuildCorrespondence "Build BuildCorrespondence" ON)
 option(Build_FragmentOptimizer "Build FragmentOptimizer")
 option(Build_GraphOptimizer "Build GraphOptimizer")
-option(Build_Integrate "Build Integrate" ON )
-option(Build_GlobalRegistration "Build GlobalRegistration")
+option(Build_Integrate "Build Integrate")
+option(Build_GlobalRegistration "Build GlobalRegistration" ON )
 
 #Building B.C.
 if(Build_BuildCorrespondence)
