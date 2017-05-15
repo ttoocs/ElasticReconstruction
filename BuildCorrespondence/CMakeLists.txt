@@ -11,10 +11,7 @@ find_package( PCL REQUIRED COMPONENTS common io KDTree registration point_types 
 #find_package( PCL REQUIRED )
 
 
-set(
-    CMAKE_RUNTIME_OUTPUT_DIRECTORY
-    ${CMAKE_HOME_DIRECTORY}/bin
- )
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY    ${CMAKE_HOME_DIRECTORY}/bin )
 
 add_definitions(
     -std=c++11
