@@ -102,7 +102,7 @@ void CIntegrateApp::StartMainLoop( bool triggered_capture )
 		while ( !exit_ ) {
 			bool has_data;
 			if ( triggered_capture ) {
-				( ( pcl::ONIGrabber * ) &capture_ )->trigger(); // Triggers new frame
+				//( ( pcl::ONIGrabber * ) &capture_ )->trigger(); // Triggers new frame
 			}
 			has_data = data_ready_cond_.timed_wait( lock, boost::posix_time::millisec( 300 ) );
 
