@@ -5,6 +5,8 @@
 #include <Eigen/Core>
 #include <Eigen/Dense>
 
+
+
 struct FramedTransformation {
 	int id1_;
 	int id2_;
@@ -116,3 +118,5 @@ struct RGBDInformation {
 		fclose( f );
 	}
 };
+
+

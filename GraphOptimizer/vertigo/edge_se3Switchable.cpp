@@ -23,10 +23,10 @@ using namespace Eigen;
 EdgeSE3Switchable::EdgeSE3Switchable() : g2o::BaseMultiEdge<6, Eigen::Isometry3d>()
 {
   resize(3);
-  _jacobianOplus[0].resize(6,6); 
-  _jacobianOplus[1].resize(6,6);
-  _jacobianOplus[2].resize(6,1);
 
+//  _jacobianOplus[0].resize(6,6);
+//  _jacobianOplus[1].resize(6,6);
+//  _jacobianOplus[2].resize(6,1);
 }
 // ================================================
 bool EdgeSE3Switchable::read(std::istream& is)

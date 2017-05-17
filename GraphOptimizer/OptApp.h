@@ -3,6 +3,7 @@
 #include <g2o/types/slam3d/se3quat.h>
 #include "helper.h"
 
+
 class COptApp
 {
 public:

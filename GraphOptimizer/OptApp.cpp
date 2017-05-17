@@ -10,6 +10,7 @@
 #include "vertigo/edge_switchPrior.h"
 #include "vertigo/edge_se3Switchable.h"
 
+
 typedef g2o::BlockSolver< g2o::BlockSolverTraits<6, 3> >  SlamBlockSolver;
 typedef g2o::LinearSolverCSparse<SlamBlockSolver::PoseMatrixType> SlamLinearCSparseSolver;
 typedef g2o::LinearSolverPCG<SlamBlockSolver::PoseMatrixType> SlamLinearPCGSolver;
@@ -263,3 +264,4 @@ void COptApp::OptimizeEM()
 	}
 	loop_remain_traj_.SaveToFile( loop_remain_log_file_ );
 }
+
