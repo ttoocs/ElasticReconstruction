@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/" ${CMAKE_MODULE_PATH})
 
 #FIND THE THINGS
+
 find_package( Boost REQUIRED COMPONENTS system filesystem program_options )
 find_package( G2O REQUIRED )
 find_package( SuiteSparse REQUIRED )
@@ -55,15 +56,15 @@ link_libraries(
     ${G2O_TYPES_SIM3}
     ${G2O_TYPES_SLAM2D}
     ${G2O_TYPES_SLAM3D}
-    /usr/local/lib/libg2o_ext_csparse.dylib
+#    /usr/local/lib/libg2o_ext_csparse.dylib
     ${Boost_LIBRARIES}
+    ${Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE}
     )
 
 #Handles linking (Via directories)
 link_directories(
     ${Boost_LIBRARY_DIRS}
     ${Boost_LIBRARY_DIR}
-    ${Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE}
 )
 
 
