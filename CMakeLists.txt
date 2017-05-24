@@ -29,7 +29,7 @@ if(Build_Integrate)
 endif()
 
 #Building GraphOptimizer
-if(Build_)
+if(Build_GraphOptimizer)
 	add_subdirectory(GraphOptimizer)
 endif()
 
