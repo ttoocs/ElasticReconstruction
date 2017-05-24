@@ -3,28 +3,29 @@
 
 //#include "stdafx.h"
 #include <Eigen/Core>
-#include <pcl/point_types.h>
-#include <pcl/point_cloud.h>
-#include <pcl/common/time.h>
-#include <pcl/common/transforms.h>
-#include <pcl/common/distances.h>
-#include <pcl/console/print.h>
-#include <pcl/features/normal_3d_omp.h>
-#include <pcl/features/fpfh_omp.h>
-#include <pcl/filters/filter.h>
-#include <pcl/filters/voxel_grid.h>
-#include <pcl/io/pcd_io.h>
-#include <pcl/registration/icp.h>
-#include "helper.h"
+//#include <pcl/point_types.h>
+//#include <pcl/point_cloud.h>
+//#include <pcl/common/time.h>
+//#include <pcl/common/transforms.h>
+//#include <pcl/common/distances.h>
+//#include <pcl/console/print.h>
+//#include <pcl/features/normal_3d_omp.h>
+//#include <pcl/features/fpfh_omp.h>
+//#include <pcl/filters/filter.h>
+//#include <pcl/filters/voxel_grid.h>
+//#include <pcl/io/pcd_io.h>
+//#include <pcl/registration/icp.h>
+//#include "helper.h"
+#include "MyVoxelGridFilter.h"
 #include "RansacCurvature.h"
 
 // Types
-typedef pcl::PointXYZ PointT;
-typedef pcl::PointNormal PointNT;
-typedef pcl::PointCloud<PointNT> PointCloudT;
-typedef pcl::FPFHSignature33 FeatureT;
-typedef pcl::FPFHEstimationOMP<PointNT,PointNT,FeatureT> FeatureEstimationT;
-typedef pcl::PointCloud<FeatureT> FeatureCloudT;
+//typedef pcl::PointXYZ PointT;
+//typedef pcl::PointNormal PointNT;
+//typedef pcl::PointCloud<PointNT> PointCloudT;
+//typedef pcl::FPFHSignature33 FeatureT;
+//typedef pcl::FPFHEstimationOMP<PointNT,PointNT,FeatureT> FeatureEstimationT;
+//typedef pcl::PointCloud<FeatureT> FeatureCloudT;
 
 
 std::string dir_name = "";
@@ -58,14 +59,14 @@ void do_all( int num )
 
 			const float leaf = config.resample_leaf_;
 
-			// Downsample
+			// Downsample 
 			pcl::console::print_highlight ("Downsampling...\n");
-			pcl::VoxelGrid<PointNT> grid;
-			grid.setLeafSize (leaf, leaf, leaf);
-			grid.setInputCloud (object);
-			grid.filter (*object);
-			grid.setInputCloud (scene);
-			grid.filter (*scene);
+			MyVoxelGridFilter grid;
+			grid.setLeafSize(leaf, leaf, leaf);
+			grid.setInputCloud(object);
+			grid.myFilter(*object);
+			grid.setInputCloud(scene);
+			grid.myFilter(*scene);
 
 			if ( config.smart_swap_ ) {
 				if ( object->size() > scene->size() ) {
@@ -334,6 +335,8 @@ int main(int argc, char * argv[])
 		return 0;
 	}
 	dir_name = std::string( argv[ 1 ] );
+//  dir_name = "office1-fragments-pcd";
+
 	int num_of_pcds =  std::count_if( boost::filesystem::directory_iterator( boost::filesystem::path( dir_name ) ),
 		boost::filesystem::directory_iterator(), 
 		[](const boost::filesystem::directory_entry& e) {
