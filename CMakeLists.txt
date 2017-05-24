@@ -9,7 +9,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/" ${CMAKE_MODUL
 ##Optional builds n things:
 option(Build_BuildCorrespondence "Build BuildCorrespondence" ON)
 option(Build_FragmentOptimizer "Build FragmentOptimizer" ON)
-option(Build_GraphOptimizer "Build GraphOptimizer")
+option(Build_GraphOptimizer "Build GraphOptimizer" ON)
 option(Build_Integrate "Build Integrate" ON )
 option(Build_GlobalRegistration "Build GlobalRegistration" ON )
 
