@@ -9,11 +9,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/" ${CMAKE_MODUL
 ##Optional builds n things:
 option(Build_BuildCorrespondence "Build BuildCorrespondence" ON)
 option(Build_FragmentOptimizer "Build FragmentOptimizer" ON)
-if(APPLE)
-	option(Build_GraphOptimizer "Build GraphOptimizer") #Currently broken on mac, due to g2o...
-else()
-	option(Build_GraphOptimizer "Build GraphOptimizer" ON)
-endif()
+option(Build_GraphOptimizer "Build GraphOptimizer" ON)
 option(Build_Integrate "Build Integrate" ON )
 option(Build_GlobalRegistration "Build GlobalRegistration" ON )
 
