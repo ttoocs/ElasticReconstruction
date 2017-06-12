@@ -38,7 +38,7 @@ struct cloud_point_index_idx
 };
 
 
-class MyVoxelGridFilter : public pcl::VoxelGrid<PointNT>
+class VoxelGridFilter : public pcl::VoxelGrid<PointNT>
 {
 public:
 
@@ -46,6 +46,17 @@ public:
 
   void myApplyFilter(PointCloudT &output);
 };
+
+
+class FeatureEstimationOMP : public pcl::FPFHEstimationOMP<PointNT,PointNT,FeatureT>
+{
+  void computeFeature(PointCloudOut &output);
+};
+
+
+
+
+
 
 
 #endif /* MyVoxelGridFilter_h */

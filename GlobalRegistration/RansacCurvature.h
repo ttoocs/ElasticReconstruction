@@ -4,6 +4,7 @@
 #include <pcl/registration/transformation_estimation_svd.h>
 #include <pcl/registration/transformation_validation.h>
 #include "PolyRejector.h"
+#include "PCLStuff.h"
 
 using namespace pcl;
 
@@ -645,6 +646,10 @@ template <typename PointSource, typename PointTarget, typename FeatureT> void
 		Eigen::Affine3f x( transformation_ );
 		rots_.push_back( Eigen::Quaternionf( x.linear() ) );
 		trans_.push_back( x.translation() );
+
+    if (lowest_error < 0.001)
+      break;
+
 	}
 
 	// Apply the final transformation

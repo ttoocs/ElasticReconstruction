@@ -16,7 +16,7 @@
 //#include <pcl/io/pcd_io.h>
 //#include <pcl/registration/icp.h>
 //#include "helper.h"
-#include "MyVoxelGridFilter.h"
+#include "PCLStuff.h"
 #include "RansacCurvature.h"
 
 // Types
@@ -61,7 +61,7 @@ void do_all( int num )
 
 			// Downsample 
 			pcl::console::print_highlight ("Downsampling...\n");
-			MyVoxelGridFilter grid;
+			VoxelGridFilter grid;
 			grid.setLeafSize(leaf, leaf, leaf);
 			grid.setInputCloud(object);
 			grid.myFilter(*object);
@@ -119,14 +119,15 @@ void do_all( int num )
 
 			// Estimate features
 			pcl::console::print_highlight ("Estimating features...\n");
-			FeatureEstimationT fest;
-			fest.setRadiusSearch ( config.feature_radius_ );
-			fest.setInputCloud (object);
-			fest.setInputNormals (object);
-			fest.compute (*object_features);
-			fest.setInputCloud (scene);
-			fest.setInputNormals (scene);
-			fest.compute (*scene_features);
+
+      FeatureEstimationOMP fest;
+      fest.setRadiusSearch ( config.feature_radius_ );
+      fest.setInputCloud (object);
+      fest.setInputNormals (object);
+      fest.compute (*object_features);
+      fest.setInputCloud (scene);
+      fest.setInputNormals (scene);
+      fest.compute (*scene_features);
 
 			pcl::console::print_highlight ("Starting alignment...\n");
 			RansacCurvature<PointNT,PointNT,FeatureT> align;
@@ -148,7 +149,6 @@ void do_all( int num )
 			}
 
 			if (align.hasConverged ())
-				//if (true)
 			{
 				align.getInformation();
 				if ( config.aux_data_ ) {
@@ -179,7 +179,8 @@ void do_all( int num )
 					traj.data_.push_back( FramedTransformation( i, j, num, transformation.cast< double >() ) );
 					info.data_.push_back( FramedInformation( i, j, num, information ) );
 				}
-			} else {
+			}
+      else {
 				pcl::console::print_error ("Alignment failed!\n");
 			}
 		}
@@ -243,12 +244,12 @@ void create_odometry( int num )
 
 		// Downsample
 		pcl::console::print_highlight ("Downsampling...\n");
-		pcl::VoxelGrid<PointNT> grid;
+		VoxelGridFilter grid;
 		grid.setLeafSize (leaf, leaf, leaf);
 		grid.setInputCloud (object);
-		grid.filter (*object);
+		grid.myFilter (*object);
 		grid.setInputCloud (scene);
-		grid.filter (*scene);
+		grid.myFilter (*scene);
 
 		if ( config.estimate_normal_ ) {
 			PointCloudT::Ptr scene_bak (new PointCloudT);
@@ -290,7 +291,7 @@ void create_odometry( int num )
 
 		// Estimate features
 		pcl::console::print_highlight ("Estimating features...\n");
-		FeatureEstimationT fest;
+		FeatureEstimationOMP fest;
 		fest.setRadiusSearch ( config.feature_radius_ );
 		fest.setInputCloud (object);
 		fest.setInputNormals (object);
