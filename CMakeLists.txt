@@ -4,6 +4,8 @@ project(ElasticReconstruction)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/" ${CMAKE_MODULE_PATH})
 
+set(CMAKE_BUILD_TYPE Release)
+
 #include (FindPkgConfig)
 
 ##Optional builds n things:
