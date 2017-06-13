@@ -15,6 +15,12 @@ option(Build_GraphOptimizer "Build GraphOptimizer" ON)
 option(Build_Integrate "Build Integrate" ON )
 option(Build_GlobalRegistration "Build GlobalRegistration" ON )
 
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
+
 #Building B.C.
 if(Build_BuildCorrespondence)
 	add_subdirectory(BuildCorrespondence)
