@@ -19,7 +19,31 @@
 #include <unordered_map>
 #include <vector>
 
-typedef Eigen::Triplet< double > Triplet;
+
+#ifdef NEWEIGEN
+typedef Eigen::Triplet< double > Triplet1;
+
+//template<typename T>
+class betterTriplet : public Triplet1 
+{
+  public:
+  void  setM(double val)
+  {
+    m_value = val;
+  }
+  double getM()
+  {
+    return m_value;
+  }
+//  betterTriplet(... args) : Triplet1(args);
+  using Triplet1 :: Triplet1;
+};
+
+typedef betterTriplet Triplet;
+#else
+typedef Eigen::Triplet< double > Triplet1;
+#endif
+
 typedef std::vector< Triplet > TripletVector;
 typedef std::unordered_map< int, int > HashMap;
 typedef std::unordered_map< int, int >::const_iterator HashMapIterator;

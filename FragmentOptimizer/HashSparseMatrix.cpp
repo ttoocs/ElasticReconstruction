@@ -37,7 +37,8 @@ void HashSparseMatrix::Add( int i, int j, double value, TripletVector & data )
 #ifndef NEWEIGEN
 		data[ it->second ].m_value += value;
 #else
-        printf("STUB: m_value trying to be set, no system to handle this!");
+    //printf("STUB: m_value trying to be set, no system to handle this!");
+    data[ it->second ].setM(data[ it->second ].getM() + value);
 #endif
 	}
 }
