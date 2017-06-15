@@ -96,13 +96,18 @@ void CIntegrateApp::StartMainLoop( bool triggered_capture )
 	{
 		boost::unique_lock< boost::mutex > lock( data_ready_mutex_ );
 	
-		capture_.start (); // Start stream
+    //Following PCL syntax
+    if(! triggered_capture){
+  		capture_.start (); // Start stream
+    }
     
 		int ten_has_data_fail_then_we_call_it_a_day = 0;
 		while ( !exit_ ) {
 			bool has_data;
+      //Following PCL 
 			if ( triggered_capture ) {
 				//( ( pcl::ONIGrabber * ) &capture_ )->trigger(); // Triggers new frame
+        capture_.start(); //Trigger new frame (FROM PCL)
 			}
 			has_data = data_ready_cond_.timed_wait( lock, boost::posix_time::millisec( 300 ) );
 
@@ -131,7 +136,7 @@ void CIntegrateApp::StartMainLoop( bool triggered_capture )
 			capture_.stop (); // Stop stream
 		}
 
-		volume_.SaveWorld( pcd_filename_ );
+//		volume_.SaveWorld( pcd_filename_ );
 
 		cout << "Total " << frame_id_ << " frames processed." << endl;
 

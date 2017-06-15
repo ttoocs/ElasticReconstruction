@@ -14,6 +14,13 @@ option(Build_FragmentOptimizer "Build FragmentOptimizer" ON)
 option(Build_GraphOptimizer "Build GraphOptimizer" ON)
 option(Build_Integrate "Build Integrate" ON )
 option(Build_GlobalRegistration "Build GlobalRegistration" ON )
+option(Build_O4 "Build with O4 optimization" ON )
+
+if ( Build_O4 )
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O4")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O4")
+
+endif( Build_O4 )
 
 find_package(OpenMP)
 if (OPENMP_FOUND)

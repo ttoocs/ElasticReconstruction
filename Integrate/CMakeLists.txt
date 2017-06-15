@@ -13,6 +13,7 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY    ${CMAKE_HOME_DIRECTORY}/bin )
 
 add_definitions(
     -std=c++11
+    -g
     ${PCL_DEFINITIONS}
     )
 
