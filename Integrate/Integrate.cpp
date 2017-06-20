@@ -38,28 +38,11 @@ int main(int argc, char * argv[])
 		return print_help ();
 	}
 
-	boost::shared_ptr< pcl::Grabber > capture;
-	bool triggered_capture = false;
-	bool use_device = false;
-	std::string openni_device, oni_file;
+	std::string oni_file;
 
-	try
-	{    
-		if ( parse_argument( argc, argv, "-dev", openni_device ) > 0 ) {
-			capture.reset( new pcl::OpenNIGrabber( openni_device ) );
-			use_device = true;
-		} else if ( parse_argument( argc, argv, "-oni", oni_file ) > 0 ) {
-			triggered_capture = true;
-			bool repeat = false; // Only run ONI file once
-			capture.reset( new pcl::ONIGrabber( oni_file, repeat, !triggered_capture ) );
-		} else {
-			capture.reset( new pcl::OpenNIGrabber() );
-			use_device = true;
-		}
-	}
-	catch (const pcl::PCLException& e /*e*/) { return cout << e.detailedMessage() << endl, -1; }
+	//parse_argument( argc, argv, "-oni", oni_file );
 
-	CIntegrateApp app( *capture, use_device );
+	CIntegrateApp app( oni_file );
 
 	parse_argument( argc, argv, "--ref_traj", app.traj_filename_ );
 	parse_argument( argc, argv, "--pose_traj", app.pose_filename_ );
@@ -79,10 +62,10 @@ int main(int argc, char * argv[])
 
 	{
 		pcl::ScopeTime time( "Integrate All" );
-		try { app.StartMainLoop (triggered_capture); }  
-		catch (const pcl::PCLException& e) { cout << e.detailedMessage() << endl; }
-		catch (const std::bad_alloc& /*e*/) { cout << "Bad alloc" << endl; }
-		catch (const std::exception& /*e*/) { cout << "Exception" << endl; }
+//		try { app.StartMainLoop (triggered_capture); }  
+//		catch (const pcl::PCLException& e) { cout << e.detailedMessage() << endl; }
+//		catch (const std::bad_alloc& /*e*/) { cout << "Bad alloc" << endl; }
+//		catch (const std::exception& /*e*/) { cout << "Exception" << endl; }
 	}
 	return 0;
 }

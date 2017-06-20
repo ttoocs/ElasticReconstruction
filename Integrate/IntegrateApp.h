@@ -13,6 +13,8 @@
 #include "TSDFVolume.h"
 #include "ControlGrid.h"
 
+#include <openni2/OpenNI.h>
+
 using namespace std;
 
 struct SampledScopeTime : public pcl::StopWatch
@@ -39,8 +41,7 @@ public:
 	std::vector< float > scaled_depth_;
 	int cols_, rows_;
 
-	pcl::Grabber & capture_;
-	bool use_device_;
+	openni::Device capture_;
 	bool exit_;
 	bool registration_;
 	int frame_id_;
@@ -79,12 +80,12 @@ private:
 #endif
 
 public:
-	CIntegrateApp( pcl::Grabber & source, bool use_device );
+	CIntegrateApp( string & source );
 	~CIntegrateApp(void);
 
 public:
 	void Init();
-	void StartMainLoop( bool triggered_capture );
+	void StartMainLoop( );
 
 private:
 	void Execute( bool has_data );
