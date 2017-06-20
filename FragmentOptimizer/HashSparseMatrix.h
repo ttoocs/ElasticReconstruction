@@ -41,7 +41,7 @@ class betterTriplet : public Triplet1
 
 typedef betterTriplet Triplet;
 #else
-typedef Eigen::Triplet< double > Triplet1;
+typedef Eigen::Triplet< double > Triplet;
 #endif
 
 typedef std::vector< Triplet > TripletVector;
