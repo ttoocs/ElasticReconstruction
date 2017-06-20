@@ -37,7 +37,11 @@ void CCorresApp::LoadData( std::string filename, int num )
 		c = strrchr( filename.c_str(), '/' );
 	}
 	memset( m_pDirName, 0, 1024 );
-	strncat( m_pDirName, filename.c_str(), c - filename.c_str() + 1 );
+//	strncat( m_pDirName, filename.c_str(), c - filename.c_str() + 1 );
+
+  string dir = "../GlobalRegistration/data/";
+
+  strcpy(m_pDirName, dir.c_str());
 
 	if ( num > 0 ) {
 		RGBDTrajectory temp;
@@ -87,7 +91,8 @@ void CCorresApp::LoadData( std::string filename, int num )
 		memset( fn, 0, 1024 );
 		pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr rawpcd( new pcl::PointCloud<pcl::PointXYZRGBNormal> );
 		pcl::PointCloud<pcl::PointXYZRGBNormal>::Ptr pcd( new pcl::PointCloud<pcl::PointXYZRGBNormal> );
-		sprintf( fn, "%scloud_bin_%d.pcd",m_pDirName, i );
+
+    sprintf( fn, "%scloud_bin_%d.pcd",m_pDirName, i );
 		PCL_INFO( "Load file : %s\n", fn );
 		if ( pcl::io::loadPCDFile( fn, *rawpcd ) < 0 ) {
 			PCL_ERROR( "Error loading file.\n" );

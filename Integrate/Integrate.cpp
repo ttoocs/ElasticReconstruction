@@ -13,7 +13,7 @@ int print_help ()
 {
 	cout << "\nApplication parameters:" << endl;
 	cout << "    --help, -h                      : print this message" << endl;  
-    cout << "    --ref_traj <log_file>           : use a reference trajectory file" << endl;
+  cout << "    --ref_traj <log_file>           : use a reference trajectory file" << endl;
 	cout << "    --pose_traj <log_file>          : use a pose trajectory file to create a reference trajectory" << endl;
 	cout << "    --seg_traj <log_file>           : trajectory within each fragment - must have" << endl;
 	cout << "    --ctr <ctr_file>                : enables distortion, must specify the following parameters" << endl;
@@ -57,7 +57,7 @@ int main(int argc, char * argv[])
 			use_device = true;
 		}
 	}
-	catch (const pcl::PCLException& /*e*/) { return cout << "Can't open depth source" << endl, -1; }
+	catch (const pcl::PCLException& e /*e*/) { return cout << e.detailedMessage() << endl, -1; }
 
 	CIntegrateApp app( *capture, use_device );
 
@@ -80,7 +80,7 @@ int main(int argc, char * argv[])
 	{
 		pcl::ScopeTime time( "Integrate All" );
 		try { app.StartMainLoop (triggered_capture); }  
-		catch (const pcl::PCLException& /*e*/) { cout << "PCLException" << endl; }
+		catch (const pcl::PCLException& e) { cout << e.detailedMessage() << endl; }
 		catch (const std::bad_alloc& /*e*/) { cout << "Bad alloc" << endl; }
 		catch (const std::exception& /*e*/) { cout << "Exception" << endl; }
 	}
