@@ -38,11 +38,9 @@ int main(int argc, char * argv[])
 		return print_help ();
 	}
 
-	std::string oni_file;
+	CIntegrateApp app;
 
-	//parse_argument( argc, argv, "-oni", oni_file );
-
-	CIntegrateApp app( oni_file );
+	parse_argument( argc, argv, "--oni_file", app.imageDir );
 
 	parse_argument( argc, argv, "--ref_traj", app.traj_filename_ );
 	parse_argument( argc, argv, "--pose_traj", app.pose_filename_ );
@@ -62,10 +60,10 @@ int main(int argc, char * argv[])
 
 	{
 		pcl::ScopeTime time( "Integrate All" );
-//		try { app.StartMainLoop (triggered_capture); }  
-//		catch (const pcl::PCLException& e) { cout << e.detailedMessage() << endl; }
-//		catch (const std::bad_alloc& /*e*/) { cout << "Bad alloc" << endl; }
-//		catch (const std::exception& /*e*/) { cout << "Exception" << endl; }
+		try { app.StartMainLoop(); }  
+		catch (const pcl::PCLException& e) { cout << e.detailedMessage() << endl; }
+		catch (const std::bad_alloc& /*e*/) { cout << "Bad alloc" << endl; }
+		catch (const std::exception& /*e*/) { cout << "Exception" << endl; }
 	}
 	return 0;
 }

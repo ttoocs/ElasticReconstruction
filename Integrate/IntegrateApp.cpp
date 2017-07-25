@@ -2,7 +2,7 @@
 #include "IntegrateApp.h"
 
 
-CIntegrateApp::CIntegrateApp( string & source)
+CIntegrateApp::CIntegrateApp()
 	: cols_( 640 ), rows_( 480 )
 	, volume_( cols_, rows_ )
 	, exit_( false )
@@ -22,17 +22,6 @@ CIntegrateApp::CIntegrateApp( string & source)
 	, start_from_( -1 )
 	, end_at_( 100000000 )
 {
-
-  //capture_.open(source.c_str());
-
-
-
-  const char* c = "test.oni";
-  capture_.open(c);
-
-//	registration_ = capture_.providesCallback< pcl::ONIGrabber::sig_cb_openni_image_depth_image > ();
-//	cout << "Registration mode: " << ( registration_ ? "On" : "Off (not supported by source)" ) << endl;
-
 	depth_.resize( cols_ * rows_ );
 	scaled_depth_.resize( cols_ * rows_ );
 
@@ -86,21 +75,37 @@ void CIntegrateApp::Init()
 
 void CIntegrateApp::StartMainLoop()
 {
-  openni::VideoStream depthStream;
-  depthStream.create(capture_, openni::SensorType::SENSOR_DEPTH);
+  cv::Mat depthFrame;
+  cv::Mat colourFrame;
 
-  int numFrames = capture_.getPlaybackControl()->getNumberOfFrames(depthStream);
+  string depthPath = imageDir + "depthframes/";
+  string colourPath = imageDir + "colourframes/";
 
-  depthStream.start();
+  size_t numFrames =  std::count_if(boost::filesystem::directory_iterator(boost::filesystem::path(depthPath)),
+                                    boost::filesystem::directory_iterator(),
+                                    [](const boost::filesystem::directory_entry& e)
+                                      { return e.path().extension() == ".png";  }
+                                   );
 
-  for( int i = 0; i < numFrames; ++i) {
+  for (int i = 0; i < numFrames; ++i) {
 
-    openni::VideoFrameRef * depthFrame = new openni::VideoFrameRef();
-    depthStream.readFrame(depthFrame);
+    string depthName = depthPath + "Image" + to_string(i) + ".png";
 
-    depth_.resize(depthFrame->getWidth() * depthFrame->getHeight());
+    depthFrame = cv::imread(depthPath);
 
-    memcpy(&depth_, depthFrame->getData(), depthFrame->getDataSize());
+		if ( depthFrame.cols != cols_ || depthFrame.rows != rows_ ) {
+			cols_ = depthFrame.cols;
+			rows_ = depthFrame.rows;
+			depth_.resize(cols_ * rows_);
+			scaled_depth_.resize(cols_ * rows_);
+		}
+
+    for (int j = 0; j < rows_; ++j)
+      for (int k = 0; k < cols_; ++ k)
+        depth_[j * cols_ + k] = depthFrame.at<unsigned short>(j, k);
+
+
+    frame_id_ = i;
 
 
     try {
@@ -110,8 +115,6 @@ void CIntegrateApp::StartMainLoop()
     catch (const std::bad_alloc& /*e*/) { cout << "Bad alloc" << endl; break; }
     catch (const std::exception& /*e*/) { cout << "Exception" << endl; break; }
 
-    delete depthFrame;
-    depthFrame = nullptr;
   }
 
   cout << "Total " << frame_id_ << " frames processed." << endl;

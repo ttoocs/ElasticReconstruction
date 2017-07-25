@@ -13,7 +13,7 @@
 #include "TSDFVolume.h"
 #include "ControlGrid.h"
 
-#include <openni2/OpenNI.h>
+#include <opencv2/opencv.hpp>
 
 using namespace std;
 
@@ -41,7 +41,8 @@ public:
 	std::vector< float > scaled_depth_;
 	int cols_, rows_;
 
-	openni::Device capture_;
+  string imageDir;
+
 	bool exit_;
 	bool registration_;
 	int frame_id_;
@@ -80,12 +81,12 @@ private:
 #endif
 
 public:
-	CIntegrateApp( string & source );
+	CIntegrateApp();
 	~CIntegrateApp(void);
 
 public:
 	void Init();
-	void StartMainLoop( );
+	void StartMainLoop();
 
 private:
 	void Execute( bool has_data );
