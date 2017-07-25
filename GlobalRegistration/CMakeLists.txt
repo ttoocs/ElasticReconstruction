@@ -26,6 +26,7 @@ add_executable(
     GlobalRegistration
     GlobalRegistration.cpp
     RansacCurvature.cpp
+    PCLStuff.cpp
     )
 
 #Handles includes (via directories)
