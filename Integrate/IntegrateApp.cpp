@@ -75,7 +75,7 @@ void CIntegrateApp::Init()
 
 void CIntegrateApp::StartMainLoop()
 {
-  cv::Mat depthFrame;
+  //cv::Mat depthFrame;
   cv::Mat colourFrame;
 
   string depthPath = imageDir + "depthframes/";
@@ -91,7 +91,7 @@ void CIntegrateApp::StartMainLoop()
 
     string depthName = depthPath + "Image" + to_string(i) + ".png";
 
-    depthFrame = cv::imread(depthName);
+    cv::Mat depthFrame = cv::imread(depthName);
 
 		if ( depthFrame.cols != cols_ || depthFrame.rows != rows_ ) {
 			cols_ = depthFrame.cols;
@@ -105,7 +105,7 @@ void CIntegrateApp::StartMainLoop()
         depth_[j * cols_ + k] = depthFrame.at<unsigned short>(j, k);
 
 
-    frame_id_ = i;
+    frame_id_ = i + 1;
 
 
     try {
