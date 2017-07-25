@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 2.8)
 find_package( Boost REQUIRED COMPONENTS system filesystem )
 
 find_package( PCL REQUIRED )
+find_package( OpenCV REQUIRED)
+
 #find_package( PCL REQUIRED COMPONENTS common io KDTree registration )
 
 #find_package( Eigen3 3.3.3 REQUIRED) #This is gotten from PCL, so yay, otherwise there will be issues.
@@ -28,6 +30,7 @@ include_directories(
 link_libraries(
     ${Boost_LIBRARIES}
     ${PCL_LIBRARIES}
+    ${OpenCV_LIBS}
     )
 
 #Handles linking (Via directories)
