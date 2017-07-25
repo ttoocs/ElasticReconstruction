@@ -368,7 +368,7 @@ void FeatureEstimationOMP::computeFeature(PointCloudOut &output)
   // Compute SPFH signatures for every point that needs them
 
 #ifdef _OPENMP
-#pragma omp parallel for shared (spfh_hist_lookup) private (nn_indices, nn_dists) num_threads(threads_)
+#pragma omp parallel for shared (spfh_hist_lookup) private (nn_indices, nn_dists)
 #endif
   for (int i = 0; i < static_cast<int> (spfh_indices_vec.size ()); ++i)
   {
@@ -394,7 +394,7 @@ void FeatureEstimationOMP::computeFeature(PointCloudOut &output)
 
   // Iterate over the entire index vector
 #ifdef _OPENMP
-#pragma omp parallel for shared (output) private (nn_indices, nn_dists) num_threads(threads_)
+#pragma omp parallel for shared (output) private (nn_indices, nn_dists)
 #endif
   for (int idx = 0; idx < static_cast<int> (indices_->size ()); ++idx)
   {

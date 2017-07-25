@@ -78,7 +78,7 @@ void COptApp::InitPointClouds()
 		pointclouds_.push_back( PointCloud( i, resolution_, length_ ) );
 	}
 
-	#pragma omp parallel for num_threads( 8 ) schedule( dynamic )
+	#pragma omp parallel for schedule( dynamic )
 	for ( int i = 0; i < num_; i++ ) {
 		int ii = relative2absolute_map_[ i ];
 		char filename[ 1024 ];
@@ -156,7 +156,7 @@ void COptApp::OptimizeNonrigid()
 
 		PCL_INFO( "Processing %d : %5d", corres_.size(), 0 );
 
-#pragma omp parallel for num_threads( 8 ) schedule( dynamic )
+#pragma omp parallel for schedule( dynamic )
 		for ( int l = 0; l < ( int )corres_.size(); l++ ) {
 			int i = corres_[ l ].idx0_;
 			int j = corres_[ l ].idx1_;
@@ -309,7 +309,7 @@ void COptApp::OptimizeRigid()
 
 		PCL_INFO( "Processing %d : %5d", corres_.size(), 0 );
 
-#pragma omp parallel for num_threads( 8 ) schedule( dynamic )
+#pragma omp parallel for schedule( dynamic )
 		for ( int l = 0; l < ( int )corres_.size(); l++ ) {
 			int i = corres_[ l ].idx0_;
 			int j = corres_[ l ].idx1_;
@@ -470,7 +470,7 @@ void COptApp::OptimizeSLAC()
 
 			PCL_INFO( "Processing %d : %5d", corres_.size(), 0 );
 
-#pragma omp parallel for num_threads( 8 ) schedule( dynamic )
+#pragma omp parallel for schedule( dynamic )
 			for ( int l = 0; l < ( int )corres_.size(); l++ ) {
 				int i = corres_[ l ].idx0_;
 				int j = corres_[ l ].idx1_;
