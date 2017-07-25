@@ -51,7 +51,7 @@ int main(int argc, char * argv[])
 	parse_argument( argc, argv, "--end_at", app.end_at_ );
 
 	parse_argument( argc, argv, "--ctr", app.ctr_filename_ );	
-	parse_argument( argc, argv, "--num", app.ctr_num_ );	
+	parse_argument( argc, argv, "--num", app.ctr_num_ );
 	parse_argument( argc, argv, "--resolution", app.ctr_resolution_ );	
 	parse_argument( argc, argv, "--length", app.ctr_length_ );	
 	parse_argument( argc, argv, "--interval", app.ctr_interval_ );	
