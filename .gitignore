@@ -13,3 +13,13 @@ GlobalRegistration/x64/
 
 *.DS_store
 profile
+
+
+# XCODE PROJECTS
+./BuildCorrespondence.xcodeproj
+./FragmentOptimizer.xcodeproj
+./GlobalRegistration.xcodeproj
+./GraphOptimizer.xcodeproj
+./Integrate.xcodeproj
+
+*.xcodeproj/*
