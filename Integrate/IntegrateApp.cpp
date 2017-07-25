@@ -110,16 +110,18 @@ void CIntegrateApp::StartMainLoop()
 
     try {
       this->Execute( true );
-
     }
     catch (const std::bad_alloc& /*e*/) { cout << "Bad alloc" << endl; break; }
     catch (const std::exception& /*e*/) { cout << "Exception" << endl; break; }
+
+    if(exit_)
+      break;
 
   }
 
   cout << "Total " << frame_id_ << " frames processed." << endl;
 
-  //volume_.SaveWorld( std::string( "world.pcd" ) );
+  volume_.SaveWorld( pcd_filename_ );
 }
 
 
@@ -176,12 +178,14 @@ void CIntegrateApp::Execute( bool has_data )
 		return;
 	}
 
-	if ( traj_.data_[ frame_id_ - 1 ].frame_ == -1 ) {
-		return;
-	}
 
 	if ( frame_id_ >= traj_.data_.size() ) {
+    PCL_WARN("Exiting due to potental segfault. %d of %d  \n", frame_id_, traj_.data_.size());
 		exit_ = true;
+		return;
+	}
+	
+  if ( traj_.data_[ frame_id_ - 1 ].frame_ == -1 ) {
 		return;
 	}
 
