@@ -91,7 +91,7 @@ void CIntegrateApp::StartMainLoop()
 
     string depthName = depthPath + "Image" + to_string(i) + ".png";
 
-    cv::Mat depthFrame = cv::imread(depthName);
+    cv::Mat depthFrame = cv::imread(depthName, cv::IMREAD_ANYDEPTH);
 
 		if ( depthFrame.cols != cols_ || depthFrame.rows != rows_ ) {
 			cols_ = depthFrame.cols;
