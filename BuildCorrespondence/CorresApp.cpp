@@ -37,11 +37,10 @@ void CCorresApp::LoadData( std::string filename, int num )
 		c = strrchr( filename.c_str(), '/' );
 	}
 	memset( m_pDirName, 0, 1024 );
-//	strncat( m_pDirName, filename.c_str(), c - filename.c_str() + 1 );
+	strncat( m_pDirName, filename.c_str(), c - filename.c_str() + 1 );
 
-  string dir = "../GlobalRegistration/data/";
-
-  strcpy(m_pDirName, dir.c_str());
+//  string dir = "../GlobalRegistration/data/";
+//  strcpy(m_pDirName, dir.c_str());
 
 	if ( num > 0 ) {
 		RGBDTrajectory temp;
