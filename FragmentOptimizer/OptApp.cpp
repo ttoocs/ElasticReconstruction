@@ -662,7 +662,7 @@ void COptApp::OptimizeSLAC()
 			for ( int l = 0; l < num_; l++ ) {
 				Eigen::Affine3d aff_mat;
 
-        aff_mat.setIdentity();
+//        aff_mat.setIdentity();
 
 				aff_mat.linear() = ( Eigen::Matrix3d ) Eigen::AngleAxisd( result( l * 6 + 2 ), Eigen::Vector3d::UnitZ() )
 					* Eigen::AngleAxisd( result( l * 6 + 1 ), Eigen::Vector3d::UnitY() )

@@ -300,8 +300,8 @@ void CCorresApp::Registration()
 		pcl::IterativeClosestPoint< pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal > icp;				
 		typedef pcl::registration::TransformationEstimationPointToPlaneLLS<pcl::PointXYZRGBNormal, pcl::PointXYZRGBNormal> PointToPlane;
 		boost::shared_ptr<PointToPlane> point_to_plane(new PointToPlane);
-
-		icp.setInputCloud( pcd1 );
+ 
+    icp.setInputSource( pcd1 );
 		icp.setInputTarget( pcd0 );
 		icp.setMaxCorrespondenceDistance( reg_dist_ );
 		icp.setMaximumIterations( 20 );
