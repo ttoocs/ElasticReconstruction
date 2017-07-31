@@ -19,7 +19,7 @@ option(Build_O4 "Build with O4 optimization" ON )
 if ( Build_O4 )
     set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O4")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O4")
-
+#    include (${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/CheckSSEFeatures.cmake)
 endif( Build_O4 )
 
 find_package(OpenMP)
