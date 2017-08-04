@@ -1,33 +1,48 @@
-## Elastic reconstruction Port.
+### Elastic reconstruction Port.
 Ported/tested by:
 * Erik Spooner
 * Scott Saunders
 
 
-# pcl_kinfu_largeScale
+## pcl_kinfu_largeScale
 
 * Part of PCL ( with cuda / gpu / openni(?) )
 * Generates cloud_bin\*.pcd
 * Generates 100-0.log - A inital log, (Inner-Segment Trajectory log (Camera or Position?)
 
-# Global Registration
+## Global Registration
+
+* Calculates init.log (doesn't actually use .pcd's, based off of 100-0.log, with duplicating the reset element.)
 
 * Takes in .pcd's, and checks them for alignment/loop closures. - These are all in the RGBDTrajectory format from his site. 
   * results.txt
-  * odometry.log
+  * odometry.log 
   * pose.log
 
-* Calculates init.log (doesn't need .pcd's)
+## Graph Optmizer
 
-# Graph Optmizer
+* pose.log
 
-* 
+## Build Correspondence
 
-# Build Correspondence
+* corres\_\*\_.txt - Indexed per-point pairings.
+* reg\_ref\_all.log 
 
+## Fragment Optimizer
 
-# Fragment Optimizer
+* output.ctr (???)
+* pose.log
 
+## Integrate
 
-# Integrate
- 
+# Outputs:
+* world.pcd 
+
+# Inputs:
+* `-ref_traj <file>` - Reference trajectory to use (Every matrix is a position in global space) (Can be used without seg/pose/interval, good for testing things.)
+* `-seg_traj <file>` - Usually the 100-0.log, information internal to the fragments movement
+* `-pose_traj <file>` - Usually the last pose.log from the pipeline that succedded. (The pose? or traj? between fragments)
+* `-interval <number>` - The number of frames in a fragment.
+* `-num <number of .pcd's>`  - See below
+* `-ctr <file>` - Combined with num, used for processing the output of fragment optimizer. (Optional)
+
