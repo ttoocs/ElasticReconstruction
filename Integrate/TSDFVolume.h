@@ -31,6 +31,7 @@ public:
 	void Integrate( std::vector< unsigned short > & depth, std::vector< float > & scaled, Eigen::Matrix4d & transformation );
 	void IntegrateVolumeUnit( std::vector< float > & scaled, const Eigen::Matrix4f & trans, const Eigen::Matrix4f & trans_inv, TSDFVolumeUnit::Ptr volume, float x_shift, float y_shift, float z_shift );
 	void SaveWorld( std::string filename );
+	void SaveWorld( std::string filename , int reduce_by);
 
 public:
 	int round( double x ) {

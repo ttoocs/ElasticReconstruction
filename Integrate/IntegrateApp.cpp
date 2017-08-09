@@ -21,6 +21,7 @@ CIntegrateApp::CIntegrateApp()
 	, ctr_length_( 3.0 )
 	, start_from_( -1 )
 	, end_at_( 100000000 )
+  , reduce_by_ (1)
 {
 	depth_.resize( cols_ * rows_ );
 	scaled_depth_.resize( cols_ * rows_ );
@@ -121,7 +122,7 @@ void CIntegrateApp::StartMainLoop()
 
   cout << "Total " << frame_id_ << " frames processed." << endl;
 
-  volume_.SaveWorld( pcd_filename_ );
+  volume_.SaveWorld( pcd_filename_ ,  reduce_by_);
 }
 
 

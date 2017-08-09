@@ -73,6 +73,8 @@ public:
 	int start_from_;
 	int end_at_;
 
+  int reduce_by_;
+
 private:
 	std::vector< unsigned short > depth_buffer_;
 

@@ -25,6 +25,7 @@ int print_help ()
 	cout << "    --save_to <pcd_file>            : output file, default - world.pcd" << endl;
 	cout << "    --start_from <frame_id>         : frames before frame_id will be skipped" << endl;
 	cout << "    --end_at <frame_id>             : frames after frame_id will be skipped" << endl;
+  cout << "    --reduce <int>                  : Reduce the saved files verticies by int^3" << endl;
 	cout << "Valid depth data sources:" << endl; 
 	cout << "    -dev <device> (default), -oni <oni_file>" << endl;
 	return 0;
@@ -56,6 +57,7 @@ int main(int argc, char * argv[])
 	parse_argument( argc, argv, "--length", app.ctr_length_ );	
 	parse_argument( argc, argv, "--interval", app.ctr_interval_ );	
 
+  parse_argument( argc, argv, "--reduce", app.reduce_by_ );
 	app.Init();
 
 	{

@@ -101,7 +101,11 @@ void TSDFVolume::IntegrateVolumeUnit( std::vector< float > & scaled, const Eigen
 	}
 }
 
-void TSDFVolume::SaveWorld( std::string filename )
+void TSDFVolume::SaveWorld( std::string filename ){
+  SaveWorld(filename, 1);
+}
+
+void TSDFVolume::SaveWorld( std::string filename , int reduce_by)
 {
 	using namespace pcl;
 	PointCloud< PointXYZI >::Ptr world( new PointCloud< PointXYZI > );
@@ -112,9 +116,10 @@ void TSDFVolume::SaveWorld( std::string filename )
 		float * sdf = unit->sdf_;
 		float * w = unit->weight_;
 
-		for ( int i = 0; i < unit->resolution_; i++ ) {
-			for ( int j = 0; j < unit->resolution_; j++ ) {
-				for ( int k = 0; k < unit->resolution_; k++, sdf++, w++ ) {
+    
+		for ( int i = 0; i < unit->resolution_; i+= reduce_by , sdf+=(reduce_by-1)*64*64 , w+=(reduce_by-1)*64*64) {
+			for ( int j = 0; j < unit->resolution_; j+= reduce_by, sdf+=(reduce_by-1)*64 , w+=(reduce_by-1)*64) {
+				for ( int k = 0; k < unit->resolution_; k+= reduce_by, sdf+=reduce_by, w+=reduce_by ) {
 					if ( *w != 0.0f && *sdf < 0.98f && *sdf >= -0.98f ) {
 						p.x = i + ( unit->xi_ - 256 ) * 64;
 						p.y = j + ( unit->yi_ - 256 ) * 64;
