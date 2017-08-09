@@ -1,16 +1,21 @@
-### Elastic reconstruction Port.
+# What is this:
+* This is a cleaned-up version of the git: git@github.com:Spoonman376/Elastic-Reconstruction-Port.git
+
+* Where the history is tagged onto the origonal authors git/work, (Ie, it's a fork now), and with some git rewritting-history and cleanup.
+
+# Elastic reconstruction Port.
 Ported/tested by:
 * Erik Spooner
 * Scott Saunders
 
 
-## pcl_kinfu_largeScale
+# pcl_kinfu_largeScale
 
 * Part of PCL ( with cuda / gpu / openni(?) )
 * Generates cloud_bin\*.pcd
 * Generates 100-0.log - A inital log, (Inner-Segment Trajectory log (Camera or Position?)
 
-## Global Registration
+# Global Registration
 
 * Calculates init.log (doesn't actually use .pcd's, based off of 100-0.log, with duplicating the reset element.)
 
@@ -19,26 +24,26 @@ Ported/tested by:
   * odometry.log 
   * pose.log
 
-## Graph Optmizer
+# Graph Optmizer
 
 * pose.log
 
-## Build Correspondence
+# Build Correspondence
 
 * corres\_\*\_.txt - Indexed per-point pairings.
 * reg\_ref\_all.log 
 
-## Fragment Optimizer
+# Fragment Optimizer
 
 * output.ctr (???)
 * pose.log
 
-## Integrate
+# Integrate
 
-# Outputs:
+## Outputs:
 * world.pcd 
 
-# Inputs:
+## Inputs:
 * `-ref_traj <file>` - Reference trajectory to use (Every matrix is a position in global space) (Can be used without seg/pose/interval, good for testing things.)
 * `-seg_traj <file>` - Usually the 100-0.log, information internal to the fragments movement
 * `-pose_traj <file>` - Usually the last pose.log from the pipeline that succedded. (The pose? or traj? between fragments)
