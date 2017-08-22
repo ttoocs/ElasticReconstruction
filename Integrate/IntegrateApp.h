@@ -1,8 +1,12 @@
 #pragma once
 #include <boost/filesystem.hpp>
+
+#ifdef openni
 #include <pcl/io/grabber.h>
 #include <pcl/io/openni_grabber.h>
 #include <pcl/io/oni_grabber.h>
+#endif
+
 #include <pcl/io/pcd_grabber.h>
 #include <pcl/common/time.h>
 
@@ -94,8 +98,9 @@ private:
 	void Execute( bool has_data );
 	void Reproject();
 
+#ifdef openni
 private:		// callback functions
 	void source_cb2( const boost::shared_ptr< openni_wrapper::Image >& image_wrapper, const boost::shared_ptr< openni_wrapper::DepthImage >& depth_wrapper, float );
 	void source_cb2_trigger( const boost::shared_ptr< openni_wrapper::Image >& image_wrapper, const boost::shared_ptr< openni_wrapper::DepthImage >& depth_wrapper, float );
+#endif
 };
-

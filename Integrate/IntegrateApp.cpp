@@ -129,6 +129,7 @@ void CIntegrateApp::StartMainLoop()
 //////////////////////////////////////////////
 // Capture functions
 //////////////////////////////////////////////
+#ifdef openni
 void CIntegrateApp::source_cb2( const boost::shared_ptr< openni_wrapper::Image >& image_wrapper, const boost::shared_ptr< openni_wrapper::DepthImage >& depth_wrapper, float )
 {
 	{
@@ -172,7 +173,7 @@ void CIntegrateApp::source_cb2_trigger( const boost::shared_ptr< openni_wrapper:
 	}
 	data_ready_cond_.notify_one();
 }
-
+#endif
 void CIntegrateApp::Execute( bool has_data )
 {
 	if ( !has_data ) {
