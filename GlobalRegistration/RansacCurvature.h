@@ -212,11 +212,38 @@ protected:
 	/** \brief Choose a random index between 0 and n-1
 	* \param n the number of possible indices to choose from
 	*/
-	inline int 
+
+//  #define old_rand
+  #define simple_mt_rand
+
+  #ifdef old_rand //Origonal code.
+	inline int
 		getRandomIndex (int n) const
 	{
 		return (static_cast<int> (n * (rand () / (RAND_MAX + 1.0))));
 	};
+  #else
+
+  #ifdef simple_mt_rand
+
+  unsigned int randSeed=4; //srand(rand());
+  inline int getRandomIndex (int n) const{
+    return (static_cast<int> (n * (rand_r((unsigned int *) &randSeed) / (RAND_MAX + 1.0))));
+  }
+  #else
+//  std::random_device r; //FirstImpl
+//  std::mt19937 gen(r()); //FirstImpl
+  #include <random>  //Note // This abuses the fact that a newRansacCurvature is called every thread of globalRegistration.
+  std::mt19937 eng{std::random_device{}()};
+  inline int
+    getRandomIndex(int n) const{
+//      std::uniform_int_distribution<int> dis(0,n); //FirstImpl
+//      return static_cast<int> ( dis( gen ) ); //FirstImpl
+//      return (static_cast<int> (n * (rand () / (RAND_MAX + 1.0)))); //Is still okay
+      return (static_cast<int> (std::uniform_int_distribution<int>{0, n}(eng))); //NOPE.
+    }
+  #endif
+  #endif
 
 	/** \brief Select \a nr_samples sample points from cloud while making sure that their pairwise distances are 
 	* greater than a user-defined minimum distance, \a min_sample_distance.
