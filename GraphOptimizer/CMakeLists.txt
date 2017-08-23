@@ -5,10 +5,21 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/" ${CMAKE_MODUL
 #FIND THE THINGS
 
 find_package( Boost REQUIRED COMPONENTS system filesystem program_options )
-find_package( G2O REQUIRED )
 find_package( SuiteSparse REQUIRED )
 find_package( PCL REQUIRED )
 #find_package( PCL REQUIRED COMPONENTS common io KDTree registration )
+
+find_package( G2O REQUIRED )
+
+
+  #TODO: Get this to work properly. 
+#if( NOT ${G2O_FOUND} )
+if(FALSE)
+  message("Using local G2O git reference.")
+  execute_process(COMMAND git submodule init ${CMAKE_CURRENT_SOURCE_DIR}/external/g2o )
+  execute_process(COMMAND git submodule update ${CMAKE_CURRENT_SOURCE_DIR}/external/g2o )
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/g2o)
+endif()
 
 #find_package( Eigen3 3.3.3 REQUIRED) #This is gotten from PCL, so yay, otherwise there will be issues.
 
