@@ -1,0 +1,3 @@
+[submodule "GraphOptimizer/external/g2o"]
+	path = GraphOptimizer/external/g2o
+	url = git@github.com:RainerKuemmerle/g2o.git
