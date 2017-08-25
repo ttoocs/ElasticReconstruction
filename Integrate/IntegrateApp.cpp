@@ -69,7 +69,8 @@ void CIntegrateApp::Init()
 					traj_.data_.push_back( FramedTransformation( idx, idx, idx + 1, pose_traj_.data_[ i ].transformation_ * seg_traj_.data_[ idx ].transformation_ ) );
  				}
 			}
-			PCL_WARN( "Trajectory created from pose and segment trajectories.\n" );
+			PCL_WARN( "Trajectory created from pose and segment trajectories.\n Saved as traj.txt" );
+      traj_.SaveToFile("traj.txt");
 		}
 	}
 }
